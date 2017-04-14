@@ -95,7 +95,7 @@ int main(int argc,char ** args){
 
     /// aes 与 des 的加密解密的速度的测试 均加密128位即16个byete的数据
     std::cout<<std::endl;
-    std::cout<<"******** ase & des CBC加密解密的速度的测试****** "<< std::endl;
+    std::cout<<"******** ase & 3des ecb加密解密的速度的测试****** "<< std::endl;
 
     int enc_times =100000;  //加密而次数s
 
@@ -119,8 +119,8 @@ int main(int argc,char ** args){
         auto t2 = std::chrono::system_clock::now();
 
         float total_time = std::chrono::duration_cast<std::chrono::nanoseconds>(t2-t1).count()/1000.0f/1000.0f;
-        std::cout<<"加密解密128位数消息"<<enc_times<<"次, des-CBC总共花费了:"<<total_time<<" ms"<<std::endl;
-        std::cout<<"加密解密128位数消息"<<enc_times<<"次, des-CBC平均花费了:"<<total_time/enc_times<<" ms"<<std::endl;
+        std::cout<<"加密解密128位数消息"<<enc_times<<"次, 3_des-ecb总共花费了:"<<total_time<<" ms"<<std::endl;
+        std::cout<<"加密解密128位数消息"<<enc_times<<"次, 3_des-ecb平均花费了:"<<total_time/enc_times<<" ms"<<std::endl;
     }
 
     // 再测试aes
