@@ -50,7 +50,7 @@ namespace _3_des{
         des::DES_EncryptBlock(plain_block,sub_keys2,temp);
 
         //第一重
-        des::DES_EncryptBlock(temp,sub_keys1,plain_block);
+        des::DES_DecryptBlock(temp,sub_keys1,plain_block);
     }
 
 
