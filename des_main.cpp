@@ -71,7 +71,7 @@ int main() {
     des::ElemType des_cbc_key_block[] = {0,0,0,0,0,0,0,0};
     des::ElemType des_cbc_bit_key_block[64];   //用一个字节代表一位
     des::ElemType des_cbc_sub_keys[16][48];  //存放子钥的空间
-    des::ElemType  des_cbc_init_vector[] ={0,0,0,0,0,0,0,0};  //初始向量 64bit
+    des::ElemType  des_cbc_init_vector[] ={0x11,0,0,0,0,0,0,0};  //初始向量 64bit
     des::ElemType des_cbc_xor_result [8];  // 用于存储异或操作后的结果
 
     std::cout<<std::endl;

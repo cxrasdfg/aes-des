@@ -1,0 +1,6 @@
+@startuml
+(*)-->"temp = DES_Encrypt(key_1,plain_txt)"
+-->"temp = DES_Decrypt(key_2,temp)"
+-->"cipher_txt = DES_Encrypt(key_1,temp)"
+-->(*)
+@enduml
