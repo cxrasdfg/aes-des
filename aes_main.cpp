@@ -5,7 +5,7 @@
 #include <iostream>
 #include <iomanip>
 #include "src/aes.hpp"
-#include "src/des.hpp"
+#include "src/triple_des.hpp"
 int main(int argc,char ** args){
 
     /**aes 加密*/
@@ -95,7 +95,7 @@ int main(int argc,char ** args){
 
     /// aes 与 des 的加密解密的速度的测试 均加密128位即16个byete的数据
     std::cout<<std::endl;
-    std::cout<<"******** ase & des加密解密的速度的测试****** "<< std::endl;
+    std::cout<<"******** ase & des ecb加密解密的速度的测试****** "<< std::endl;
 
     int enc_times =100000;  //加密而次数s
 
@@ -109,18 +109,18 @@ int main(int argc,char ** args){
             des::Char8ToBit64(key_block,des_bit_keys);
             des::DES_MakeSubKeys(des_bit_keys,des_sub_keys);
 
-            des::DES_EncryptBlock(plain_block,des_sub_keys,cipher_block);
-            des::DES_EncryptBlock(plain_block+8,des_sub_keys,cipher_block+8); //des的块是8个字节也就是64位的。。。
+            _3_des::_3_DES_EncryptBlock(plain_block,key_block,key_block,key_block,cipher_block);
+            _3_des::_3_DES_EncryptBlock(plain_block+8,key_block,key_block,key_block,cipher_block+8); //des的块是8个字节也就是64位的。。。
 
-            des::DES_DecryptBlock(cipher_block,des_sub_keys,plain_block);
-            des::DES_DecryptBlock(cipher_block+8,des_sub_keys,plain_block+8);
+            _3_des::_3_DES_DecryptBlock(cipher_block,key_block,key_block,key_block,plain_block);
+            _3_des::_3_DES_DecryptBlock(cipher_block+8,key_block,key_block,key_block,plain_block+8);
         }
 
         auto t2 = std::chrono::system_clock::now();
 
         float total_time = std::chrono::duration_cast<std::chrono::nanoseconds>(t2-t1).count()/1000.0f/1000.0f;
-        std::cout<<"加密解密128位数消息"<<enc_times<<"次, des总共花费了:"<<total_time<<" ms"<<std::endl;
-        std::cout<<"加密解密128位数消息"<<enc_times<<"次, des平均花费了:"<<total_time/enc_times<<" ms"<<std::endl;
+        std::cout<<"加密解密128位数消息"<<enc_times<<"次, des-ecb总共花费了:"<<total_time<<" ms"<<std::endl;
+        std::cout<<"加密解密128位数消息"<<enc_times<<"次, des-ecb平均花费了:"<<total_time/enc_times<<" ms"<<std::endl;
     }
 
     // 再测试aes
